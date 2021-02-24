@@ -7,27 +7,35 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController {
+class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-//    @IBOutlet weak var githubIdLabel: UILabel!
-//    @IBOutlet weak var githubDisplayNameLabel: UILabel!
-//    @IBOutlet weak var githubEmailLabel: UILabel!
-//    @IBOutlet weak var githubAvatarUrlLabel: UILabel!
-//    @IBOutlet weak var githubAccessTokenLabel: UILabel!
+
+    @IBOutlet weak var tableView: UITableView!
+
     
-//    var githubId = 0
-//    var githubDisplayName = ""
-//    var githubEmail = ""
-//    var githubAvatarURL = ""
-//    var githubAccessToken = ""
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-//        githubIdLabel.text = String(githubId)
-//        githubDisplayNameLabel.text = githubDisplayName
-//        githubEmailLabel.text = githubEmail
-//        githubAvatarUrlLabel.text = githubAvatarURL
-//        githubAccessTokenLabel.text = githubAccessToken
+
+        tableView.register(MyTableViewCell.nib(), forCellReuseIdentifier: MyTableViewCell.idetifier)
+        tableView.delegate = self
+        tableView.dataSource = self
+
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let customCell = tableView.dequeueReusableCell(withIdentifier: MyTableViewCell.idetifier, for: indexPath) as! MyTableViewCell
+        customCell.configure(with: "customCell", imageName: "gear")
+        return customCell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 300
     }
 
 }
+

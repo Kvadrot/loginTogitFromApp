@@ -13,5 +13,4 @@ struct ClientConstants {
     static let CLIENT_SECRET = "dbaec1e2b68e701c08bcdf1f68aac101892ded04"
     static let REDIRECT_URI = "https://github.com/kvadrot"
     static let SCOPE = "read:user,user:email"
-    static let TOKENURL = "https://github.com/login/oauth/access_token"
 }
