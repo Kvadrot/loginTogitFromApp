@@ -72,10 +72,9 @@ class NetworkManager {
             }
         }
         task.resume()
-        fetchDataFromRepo()
     }
     
-    func fetchDataFromRepo() {
+    func fetchDataFromRepo(compelition: @escaping (AllImages?) -> Void) {
         
         var urlComponents = URLComponents()
         
@@ -101,7 +100,7 @@ class NetworkManager {
 
                 var decoderedAllImages: AllImages = .init()//AllImages
                 decoderedAllImages.images = try decoder.decode([ImageForFetchingDetails].self, from: data!)
-                //compelition(decoderedAllImages)
+                compelition(decoderedAllImages)
             } catch {
                 print(error)
             }

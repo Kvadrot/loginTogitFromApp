@@ -41,6 +41,7 @@ class ViewController: UIViewController {
 extension ViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+
         networkManager.RequestForCallbackURL(request: navigationAction.request, completion: {
             let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(identifier: "DetailsViewController")
                         self.present(vc, animated: true)
