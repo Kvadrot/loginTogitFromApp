@@ -25,13 +25,14 @@ class NetworkManager {
         return request
     }
     
-    func RequestForCallbackURL(request: URLRequest, completion: () -> Void) {
-        //MARK: get the authorization code string after the ?code=
+    func RequestForCallbackURL(request: URLRequest, completion: () -> Void, _ authCode: inout String ) {
 
+        //MARK: get the authorization code string after the ?code=
         let queryCode = URLComponents.init(url: request.url!, resolvingAgainstBaseURL: true)?.queryItems
         guard let gamno = queryCode?[0] else { return }
         
-        postParameteresConstructor(String(gamno.value!))
+        authCode = String(gamno.value ?? "authCode error")
+        //postParameteresConstructor(String(gamno.value!))
         completion()
     }
     
